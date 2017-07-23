@@ -30,6 +30,21 @@
      ]
  };
 
+ var albumElvis = {
+     title: 'Blue Hawaii',
+     artist: 'Elvis',
+     label: 'RCA',
+     year: '1961',
+     albumArtUrl: 'assets/images/album_covers/20.png',
+     songs: [
+         { title: 'Blue Hawaii', duration: '2:36' },
+         { title: 'Aloha Oe', duration: '1:53' },
+         { title: 'No More', duration: '2:22'},
+         { title: 'Cant Help Falling in Love', duration: '3:01' },
+         { title: 'Rock-A-Hula Baby', duration: '1:59'}
+     ]
+ };
+
 var createSongRow = function(songNumber, songName, songLength) {
      var template =
         '<tr class="album-view-song-item">'
@@ -42,14 +57,13 @@ var createSongRow = function(songNumber, songName, songLength) {
      return template;
  };
 
+ var albumTitle = document.getElementsByClassName('album-view-title')[0];
+ var albumArtist = document.getElementsByClassName('album-view-artist')[0];
+ var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
+ var albumImage = document.getElementsByClassName('album-cover-art')[0];
+ var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
+
 var setCurrentAlbum = function(album) {
-     // #1
-     var albumTitle = document.getElementsByClassName('album-view-title')[0];
-     var albumArtist = document.getElementsByClassName('album-view-artist')[0];
-     var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
-     var albumImage = document.getElementsByClassName('album-cover-art')[0];
-     var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
- 
      // #2
      albumTitle.firstChild.nodeValue = album.title;
      albumArtist.firstChild.nodeValue = album.artist;
@@ -67,4 +81,14 @@ var setCurrentAlbum = function(album) {
  
  window.onload = function() {
      setCurrentAlbum(albumPicasso);
+     
+     var albums = [albumPicasso, albumMarconi, albumElvis];
+     var index = 1;
+     albumImage.addEventListener("click", function(event) {
+         setCurrentAlbum(albums[index]);
+         index++;
+         if (index == ablums.length) {
+             index = 0;
+         }
+     });
  };
