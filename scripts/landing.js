@@ -1,3 +1,6 @@
+var title = document.getElementsByClassName('hero-title');
+var points = document.getElementsByClassName('point');
+
 var animatePoints = function() {
     
     var revealPoint = function() {
